@@ -1,0 +1,38 @@
+ARG RUBY_VERSION=2.6.1
+
+FROM scardon/ruby-node-alpine:$RUBY_VERSION
+
+ARG BUNDLE_ROOT="/.bundle"
+ARG APP_ROOT="/app"
+
+RUN apk --update add build-base \
+    postgresql-client \
+    postgresql-dev \
+    imagemagick \
+    imagemagick-dev \
+    libxml2 \
+    libxslt \
+    libxml2-dev \
+    libxslt-dev \
+    icu-dev \
+    git \
+    tzdata \
+    && rm -rf /var/cache/apk/*
+
+ENV LANG=C.UTF-8 \
+    GEM_HOME=$BUNDLE_ROOT \
+    BUNDLE_JOBS=4 \
+    BUNDLE_RETRY=3 \
+    APP_NAME=$APP_NAME
+ENV BUNDLE_PATH=$GEM_HOME \
+    BUNDLE_APP_CONFIG=$GEM_HOME \
+    BUNDLE_BIN=$GEM_HOME/bin \
+    PATH=$GEM_HOME/bin:$PATH
+
+RUN gem update --system && \
+    if [[ -n "$BUNDLER_VERSION" ]]; then gem install bundler:$BUNDLER_VERSION; \
+    else gem install bundler; fi
+RUN bundle config build.nokogiri --use-system-libraries
+
+RUN mkdir -p $APP_ROOT
+WORKDIR $APP_ROOT

@@ -1,0 +1,2 @@
+class Vertical < Section
+end
