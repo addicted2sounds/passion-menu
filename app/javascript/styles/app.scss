@@ -13,6 +13,7 @@ body {
 
 ul.verticals {
   list-style-type: none;
+  float: left;
   margin: 0;
   padding: 0;
   width: 200px;
@@ -32,4 +33,23 @@ ul.verticals {
     background-color: #555;
     color: white;
   }
+}
+
+ul.categories {
+  list-style-type: none;
+  margin: 0;
+  padding: 2px 28px;
+  li a {
+    display: block;
+    width: 100%;
+    color: #555;
+    font-size: 0.8em;
+  }
+  li a:hover {
+    color: #c5c5c5
+  }
+}
+
+main {
+  padding: 10px 10px 0 220px;
 }

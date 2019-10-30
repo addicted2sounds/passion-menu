@@ -7,3 +7,7 @@ export const fetchVerticals = async () => (
 export const fetchCategories = async (verticalId) => (
   axios.get(`/verticals/${verticalId}/categories`)
 )
+
+export const fetchCourses = async categoryId => (
+  axios.get(`categories/${categoryId}/courses`)
+)

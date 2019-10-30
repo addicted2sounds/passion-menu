@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import { fetchCategories } from '../api';
 
 export default ({ verticalId }) => {
@@ -14,7 +16,7 @@ export default ({ verticalId }) => {
     <ul className="categories">
       {categories.map(category => (
         <li key={category.id}>
-          {category.attributes.name}
+          <Link to={`/categories/${category.id}`}>{category.attributes.name}</Link>
         </li>
       ))}
     </ul>
