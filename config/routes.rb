@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :verticals, except: %i[new edit] do
-      resources :categories, shallow: true, except: %i[new edit]
+      scope shallow: true do
+        resources :categories, except: %i[new edit] do
+          resources :courses, except: %i[new edit]
+        end
+      end
     end
   end
 
