@@ -6,6 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Vertical.create! name: 'Health & Fitness'
-Vertical.create! name: 'Business'
-Vertical.create! name: 'Music'
+vertical = Vertical.create! name: 'Health & Fitness'
+vertical.categories.create! [
+  { name: 'Booty & Abs' },
+  { name: 'Full Body' }
+]
+vertical = Vertical.create! name: 'Business'
+vertical.categories.create! [
+  { name: 'Advertising' },
+  { name: 'Writing' }
+]
+vertical = Vertical.create! name: 'Music'
+vertical.categories.create! [
+  { name: 'Singing' },
+  { name: 'Music Fundamentals' }
+]
