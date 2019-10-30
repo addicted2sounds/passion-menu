@@ -1,3 +1,3 @@
 class Section < ApplicationRecord
-  validates :name, uniqueness: { case_sensitive: false }
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
 end
