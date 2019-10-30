@@ -62,4 +62,58 @@ describe 'Verticals', type: :request do
       end
     end
   end
+
+  describe 'PATCH /api/verticals/:id' do
+    let!(:vertical) { create :vertical }
+    let(:make_request) do
+      patch "/api/verticals/#{vertical.to_param}",
+            params: data, headers: { format: :json }
+    end
+
+    context 'with valid attributes' do
+      let(:data) do
+        {
+          data: {
+            type: 'verticals',
+            attributes: {
+              name: Faker::Science.element
+            }
+          }
+        }
+      end
+
+      it 'updates resource' do
+        expect { make_request }.to change(Vertical, :count).by 0
+        is_expected.to serialize_resource vertical.reload,
+                                          with: VerticalSerializer
+      end
+    end
+
+    context 'with invalid attributes' do
+      let(:data) do
+        {
+          data: {
+            type: 'verticals',
+            attributes: { name: '' }
+          }
+        }
+      end
+
+      it 'serializes errors' do
+        make_request
+        expect(json).to include 'errors'
+      end
+    end
+  end
+
+  describe 'DELETE /api/verticals/:id' do
+    let!(:vertical) { create :vertical }
+    let(:make_request) do
+      delete "/api/verticals/#{vertical.to_param}", headers: { format: :json }
+    end
+
+    it 'destroys resource' do
+      expect { make_request }.to change(Vertical, :count).by -1
+    end
+  end
 end
