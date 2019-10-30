@@ -1,5 +1,9 @@
 import axios from './axios';
 
 export const fetchVerticals = async () => (
-  await axios.get("/verticals")
+  axios.get("/verticals")
+)
+
+export const fetchCategories = async (verticalId) => (
+  axios.get(`/verticals/${verticalId}/categories`)
 )
