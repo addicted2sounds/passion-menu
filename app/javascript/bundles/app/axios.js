@@ -13,7 +13,7 @@ instance.interceptors.response.use(
   response => response,
   error => {
     if (error.response.status === 401) {
-      ls.delete('token');
+      ls.remove('token');
     }
     return Promise.reject(error);
   }
@@ -23,5 +23,6 @@ export const setToken = token => {
   instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   ls.set('token', token);
 };
+
 
 export default instance;

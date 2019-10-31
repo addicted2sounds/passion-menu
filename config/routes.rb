@@ -9,6 +9,7 @@ Rails.application.routes.draw do
         end
       end
     end
+    delete 'auth', to: 'auth#destroy'
   end
   get '/auth/github/callback', to: 'auth/omniauth_callbacks#create'
   get '*path', to: 'home#index', constraints: ->(request) do

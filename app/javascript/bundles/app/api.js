@@ -11,3 +11,7 @@ export const fetchCategories = async (verticalId) => (
 export const fetchCourses = async categoryId => (
   axios.get(`categories/${categoryId}/courses`)
 )
+
+export const logout = async => (
+  axios.delete('auth')
+)

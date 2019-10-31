@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @token = auth_token
+    @token = auth_token&.token
   end
 
   private

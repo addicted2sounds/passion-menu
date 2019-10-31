@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import ProtectedRoute from './components/ProtectedRoute';
 import Auth from './components/Auth';
-import VerticalsList from './components/VerticalsList';
+import Head from './components/Head';
 import Home from './components/Home';
 import CoursesList from './components/CoursesList';
 import { setToken } from './axios';
 import 'styles/app.scss'
 
 export default ({ token }) => {
-  setToken(token);
+  // useEffect  (() => {
+    setToken(token);
+  // });
   return (
     <Router>
-      <div className="header">Passion Menu</div>
-      {token && <VerticalsList/>}
+      {token && <Head/>}
       <main>
         <Switch>
           <ProtectedRoute path="/" exact component={Home}/>
