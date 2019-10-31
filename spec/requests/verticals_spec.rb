@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 describe 'Verticals', type: :request do
+  let(:user) { create :user }
+
   describe 'GET /api/verticals' do
     let(:make_request) do
-      get '/api/verticals', headers: { format: :json }
+      get '/api/verticals', headers: auth_headers(user)
     end
     subject { response }
 
@@ -24,7 +26,7 @@ describe 'Verticals', type: :request do
 
   describe 'POST /api/verticals' do
     let(:make_request) do
-      post '/api/verticals', params: data, headers: { format: :json }
+      post '/api/verticals', params: data, headers: auth_headers(user)
     end
 
     context 'with valid attributes' do
@@ -67,7 +69,7 @@ describe 'Verticals', type: :request do
     let!(:vertical) { create :vertical }
     let(:make_request) do
       patch "/api/verticals/#{vertical.to_param}",
-            params: data, headers: { format: :json }
+            params: data, headers: auth_headers(user)
     end
 
     context 'with valid attributes' do
@@ -109,7 +111,7 @@ describe 'Verticals', type: :request do
   describe 'DELETE /api/verticals/:id' do
     let!(:vertical) { create :vertical }
     let(:make_request) do
-      delete "/api/verticals/#{vertical.to_param}", headers: { format: :json }
+      delete "/api/verticals/#{vertical.to_param}", headers: auth_headers(user)
     end
 
     it 'destroys resource' do

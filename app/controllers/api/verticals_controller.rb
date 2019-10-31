@@ -8,7 +8,7 @@ module Api
 
     def create
       render CreateRecordService.new(
-        Vertical.new(vertical_params), VerticalSerializer
+        Vertical.new(vertical_params), serializer: VerticalSerializer
       ).call
     end
 

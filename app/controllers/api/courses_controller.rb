@@ -7,13 +7,10 @@ module Api
     end
 
     def create
-      @course = @category.courses.build course_params
-      if @course.save
-        render json: CourseSerializer.new(@course)
-      else
-        render json: ErrorSerializer.new(@course.errors),
-                     status: :unprocessable_entity
-      end
+      render CreateRecordService.new(
+        @category.courses.build(course_params),
+        serializer: CourseSerializer
+      ).call
     end
 
     def update

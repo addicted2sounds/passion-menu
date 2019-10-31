@@ -13,6 +13,7 @@ class CreateRecordService
         json: ErrorSerializer.new(record.errors),
         status: :unprocessable_entity
       }
+    end
   end
 
   private

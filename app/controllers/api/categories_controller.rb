@@ -8,13 +8,10 @@ module Api
     end
 
     def create
-      @category = @vertical.categories.build category_params
-      if @category.save
-        render json: CategorySerializer.new(@category)
-      else
-        render json: ErrorSerializer.new(@category.errors),
-                     status: :unprocessable_entity
-      end
+      render CreateRecordService.new(
+        @vertical.categories.build(category_params),
+        serializer: CategorySerializer
+      ).call
     end
 
     def update

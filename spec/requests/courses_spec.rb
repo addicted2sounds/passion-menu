@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 describe 'Courses', type: :request do
+  let(:user) { create :user }
   let(:category) { create :category }
 
   describe 'GET /api/categories/:category_id/courses' do
     let(:make_request) do
       get "/api/categories/#{category.to_param}/courses",
-          headers: { format: :json }
+          headers: auth_headers(user)
     end
     subject { response }
 
@@ -28,7 +29,7 @@ describe 'Courses', type: :request do
   describe 'POST /api/categories/:category_id/courses' do
     let(:make_request) do
       post "/api/categories/#{category.to_param}/courses",
-           params: data, headers: { format: :json }
+           params: data, headers: auth_headers(user)
     end
 
     context 'with valid attributes' do
@@ -76,7 +77,7 @@ describe 'Courses', type: :request do
     let!(:course) { create :course }
     let(:make_request) do
       patch "/api/courses/#{course.to_param}",
-            params: data, headers: { format: :json }
+            params: data, headers: auth_headers(user)
     end
 
     context 'with valid attributes' do
@@ -119,7 +120,7 @@ describe 'Courses', type: :request do
   describe 'DELETE /api/courses/:id' do
     let!(:course) { create :course }
     let(:make_request) do
-      delete "/api/courses/#{course.to_param}", headers: { format: :json }
+      delete "/api/courses/#{course.to_param}", headers: auth_headers(user)
     end
 
     it 'destroys resource' do
