@@ -7,13 +7,9 @@ module Api
     end
 
     def create
-      @vertical = Vertical.new vertical_params
-      if @vertical.save
-        render json: VerticalSerializer.new(@vertical)
-      else
-        render json: ErrorSerializer.new(@vertical.errors),
-                     status: :unprocessable_entity
-      end
+      render CreateRecordService.new(
+        Vertical.new(vertical_params), VerticalSerializer
+      ).call
     end
 
     def update
