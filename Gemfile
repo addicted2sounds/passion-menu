@@ -11,6 +11,8 @@ gem 'webpacker', '~> 4.x'
 
 gem 'fast_jsonapi'
 
+gem 'omniauth-github'
+gem 'knock'
 gem 'attr_extras'
 
 group :development, :test do

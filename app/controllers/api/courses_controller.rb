@@ -1,5 +1,5 @@
 module Api
-  class CoursesController < ApplicationController
+  class CoursesController < ApiController
     before_action :set_category, only: %i[index create]
     before_action :set_course, only: %i[show update destroy]
     def index

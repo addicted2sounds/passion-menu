@@ -1,5 +1,5 @@
 module Api
-  class VerticalsController < ApplicationController
+  class VerticalsController < ApiController
     before_action :set_vertical, only: %i[show update destroy]
     def index
       @verticals = Vertical.all

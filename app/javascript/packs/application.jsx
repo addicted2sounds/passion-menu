@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom'
 import App from 'bundles/app'
 
 document.addEventListener('DOMContentLoaded', () => {
+  const element = document.getElementById('app');
   ReactDOM.render(
-    <App/>,
-    document.body.appendChild(document.createElement('div')),
+    <App token={element.dataset['token']}/>, element
   )
 })

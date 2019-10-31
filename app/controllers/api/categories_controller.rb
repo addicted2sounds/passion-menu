@@ -1,5 +1,5 @@
 module Api
-  class CategoriesController < ApplicationController
+  class CategoriesController < ApiController
     before_action :set_vertical, only: %w[index create]
     before_action :set_category, only: %w[update destroy]
 
