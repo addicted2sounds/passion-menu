@@ -14,7 +14,7 @@ export default ({ match: { params }}) => {
     {courses.map(course => (
       <section key={course.id}>
         <header><h2>{course.attributes.name}</h2></header>
-        <author>{course.attributes.author}</author>
+        <div className="author">{course.attributes.author}</div>
       </section>
     ))}
     </>
